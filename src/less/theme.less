@@ -1,0 +1,388 @@
+
+//
+// Load core variables and mixins
+// --------------------------------------------------
+
+@import "variables.less";
+@import "mixins.less";
+
+body {
+  background-image: url(../img/beige-bg.jpg);
+  background-color: @brand-light;
+  color: @brand-dark;
+}
+
+article p {
+  font-size: @font-paragraph;
+}
+
+body > .container {
+  background-image: url(../img/brown-bg.jpg);
+  background-color: @brand-dark;
+  margin-top: 20px;
+  margin-bottom: 40px;
+  padding-top: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-bottom: 10px;
+  border-radius: @border-radius-base;
+  .box-shadow(@container-shadow)
+}
+
+.row {
+  background-image: url(../img/hl-bg.jpg);
+  background-color: @brand-highlight;
+  padding: 20px 10px 20px 10px;
+  margin: 0px;
+  margin-bottom: 10px;
+  .box-shadow(@container-shadow);
+  border-radius: @border-radius-large;
+}
+
+//
+// Buttons
+// --------------------------------------------------
+
+// Common styles
+.btn-default,
+.btn-primary,
+.btn-success,
+.btn-info,
+.btn-warning,
+.btn-danger {
+  text-shadow: 0 -1px 0 rgba(0,0,0,.2);
+  @shadow: 0px 1px 3px 0px #473e38;
+  .box-shadow(@shadow);
+
+  // Reset the shadow
+  &:active,
+  &.active {
+    .box-shadow(inset 0 3px 5px rgba(0,0,0,.125));
+  }
+}
+
+// Mixin for generating new styles
+.btn-styles(@btn-color: #555) {
+  background-repeat: repeat-x;
+  border-color: darken(@btn-color, 14%);
+
+  &:hover,
+  &:focus  {
+    background-color: darken(@btn-color, 12%);
+    background-position: 0 -15px;
+  }
+
+  &:active,
+  &.active {
+    background-color: darken(@btn-color, 12%);
+    border-color: darken(@btn-color, 14%);
+  }
+}
+
+// Common styles
+.btn {
+  // Remove the gradient for the pressed/active state
+  &:active,
+  &.active {
+    background-image: none;
+  }
+}
+
+// Apply the mixin to the buttons
+.btn-default { .btn-styles(@btn-default-bg); text-shadow: 0 1px 0 #fff; border-color: #ccc; }
+.btn-primary { .btn-styles(@btn-primary-bg); }
+.btn-success { .btn-styles(@btn-success-bg); background-image: url(../img/green-bg.jpg); }
+.btn-warning { .btn-styles(@btn-warning-bg); }
+.btn-danger  { .btn-styles(@btn-danger-bg); }
+.btn-info    { .btn-styles(@btn-info-bg); }
+
+
+
+//
+// Images
+// --------------------------------------------------
+
+.thumbnail,
+.img-thumbnail {
+  .box-shadow(0 1px 2px rgba(0,0,0,.075));
+}
+
+
+
+//
+// Dropdowns
+// --------------------------------------------------
+
+.dropdown-menu > li > a:hover,
+.dropdown-menu > li > a:focus {
+  background-color: darken(@dropdown-link-hover-bg, 5%);
+}
+.dropdown-menu > .active > a,
+.dropdown-menu > .active > a:hover,
+.dropdown-menu > .active > a:focus {
+  background-color: darken(@dropdown-link-active-bg, 5%);
+}
+
+//
+// Navbar
+// --------------------------------------------------
+.navbar {
+  font-family: @navbar-font-family;
+}
+// Default navbar
+.navbar-default {
+  .navbar-nav > .active > a {
+    .box-shadow(inset 0 3px 9px rgba(0,0,0,.075));
+  }
+}
+.navbar-brand,
+.navbar-nav > li > a {
+  text-shadow: 0 1px 0 rgba(255,255,255,.25);
+}
+.navbar-header {
+  .navbar-vertical-align(50px);
+}
+// Inverted navbar
+.navbar-inverse {
+
+  .navbar-nav > .active > a {
+    .box-shadow(inset 0 3px 9px rgba(0,0,0,.25));
+  }
+
+  .navbar-brand,
+  .navbar-nav > li > a {
+    text-shadow: 0 -1px 0 rgba(0,0,0,.25);
+  }
+}
+.navbar-brand {
+  font-family: @navbar-font-family;
+  font-size: 39px;
+  line-height: @navbar-line-height;
+  margin-right: 10px;
+  padding: 0px;
+
+  text-align: center;
+  float: none;
+
+  @media (min-width: @grid-float-breakpoint) {
+    float: left;
+  }
+}
+
+// Undo rounded corners in static and fixed navbars
+.navbar-static-top,
+.navbar-fixed-top,
+.navbar-fixed-bottom {
+  background-image: url(../img/brown-bg.jpg);
+  background-color: @brand-dark;
+  border-radius: 0;
+  margin-bottom: 20px;
+}
+
+//
+// Jumbotron
+// --------------------------------------------------
+.jumbotron {
+  background-image: url(../img/teal-bg.jpg);
+  background-color: @brand-info;
+  font-family: @headings-font-family;
+  text-shadow: rgb(71, 62, 56) 2px 1px 0px;
+  .box-shadow(@container-shadow);
+  margin-bottom: 30px;
+
+  @media screen and (min-width: @screen-sm-min) {
+    h1,
+    .h1 {
+      font-size: (@font-size-base * 2.5);
+      font-weight: bold;
+    }
+  }
+}
+
+//
+// Alerts
+// --------------------------------------------------
+
+// Common styles
+.alert {
+  text-shadow: 0 1px 0 rgba(255,255,255,.2);
+  @shadow: inset 0 1px 0 rgba(255,255,255,.25), 0 1px 2px rgba(0,0,0,.05);
+  .box-shadow(@shadow);
+}
+
+// Mixin for generating new styles
+.alert-styles(@color) {
+  border-color: darken(@color, 15%);
+}
+
+// Apply the mixin to the alerts
+.alert-success    { .alert-styles(@alert-success-bg); }
+.alert-info       { .alert-styles(@alert-info-bg); }
+.alert-warning    { .alert-styles(@alert-warning-bg); }
+.alert-danger     { .alert-styles(@alert-danger-bg); }
+
+
+//
+// Progress bars
+// --------------------------------------------------
+
+// Give the progress background some depth
+.progress {
+}
+
+// Mixin for generating new styles
+.progress-bar-styles(@color) {
+}
+
+// Apply the mixin to the progress bars
+.progress-bar            { .progress-bar-styles(@progress-bar-bg); }
+.progress-bar-success    { .progress-bar-styles(@progress-bar-success-bg); }
+.progress-bar-info       { .progress-bar-styles(@progress-bar-info-bg); }
+.progress-bar-warning    { .progress-bar-styles(@progress-bar-warning-bg); }
+.progress-bar-danger     { .progress-bar-styles(@progress-bar-danger-bg); }
+
+
+
+//
+// List groups
+// --------------------------------------------------
+
+.list-group {
+  border-radius: @border-radius-base;
+  .box-shadow(0 1px 2px rgba(0,0,0,.075));
+}
+.list-group-item.active,
+.list-group-item.active:hover,
+.list-group-item.active:focus {
+  text-shadow: 0 -1px 0 darken(@list-group-active-bg, 10%);
+  border-color: darken(@list-group-active-border, 7.5%);
+}
+
+
+
+//
+// Panels
+// --------------------------------------------------
+
+// Common styles
+.panel {
+}
+
+// Mixin for generating new styles
+.panel-heading-styles(@color) {
+  background-color: @color;
+}
+
+// Apply the mixin to the panel headings only
+.panel-default > .panel-heading   { .panel-heading-styles(@panel-default-heading-bg); }
+.panel-primary > .panel-heading   { .panel-heading-styles(@panel-primary-heading-bg); }
+.panel-success > .panel-heading   { .panel-heading-styles(@panel-success-heading-bg); }
+.panel-info > .panel-heading      { .panel-heading-styles(@panel-info-heading-bg); }
+.panel-warning > .panel-heading   { .panel-heading-styles(@panel-warning-heading-bg); }
+.panel-danger > .panel-heading    { .panel-heading-styles(@panel-danger-heading-bg); }
+
+.panel:last-child {
+  margin-bottom: 0px;
+}
+
+//
+// Wells
+// --------------------------------------------------
+
+.well {
+  background-image: url(../img/beige-bg.jpg);
+  border: 0px;
+}
+
+// Breadcrum
+.breadcrumb {
+  font-size: @font-size-large;
+  text-transform: lowercase;
+  background-image: url(../img/hl-bg.jpg);
+  background-color: @brand-highlight;
+  border: 0px;
+  @shadow: inset 0 1px 1px rgba(0, 0, 0, 0.2);
+  .box-shadow(@shadow);
+}
+.breadcrumb > li + li:before {
+  content: " \203A";
+}
+
+//
+// Footer
+// --------------------------------------------------
+.footer {
+  background-image: url(../img/hl-bg.jpg);
+  background-color: @brand-highlight;
+  margin-bottom: 0px;
+  .box-shadow(@container-shadow);
+}
+
+//
+// Theme Specific
+// --------------------------------------------------
+
+.navbar .ma-socialbar {
+  .navbar-vertical-align(@line-height-computed);
+  background-image: url(../img/green-bg.jpg);
+  background-color: @brand-success;
+  .box-shadow(@container-shadow);
+  border-radius: @border-radius-small;
+  padding: 10px;
+
+  @media (min-width: @grid-float-breakpoint) {
+    float: right;
+  }
+
+  img {
+    width: 24px;
+    height: 24px;
+  }
+}
+.navbar-brand .ma-tagline {
+  display: block;
+  color: inherit;
+  font-size: 0.5em;
+
+  @media (min-width: @screen-sm-min) {
+    display: inline;
+  }
+}
+
+.ma-well {
+  background-color: @brand-light;
+  font-size: @font-size-large;
+  h3 {
+    margin-top: 0px;
+  }
+  .ma-well-icon {
+    float: left;
+    margin-right: 1em;
+  }
+
+}
+.ma-well:last-child {
+  margin-bottom: 0px;
+}
+
+.ma-panel {
+  .panel-variant(0px; @panel-default-text; transparent; 0px);
+  background-color: transparent;
+  box-shadow: none;
+
+  .panel-heading {
+    background-color: inherit;
+    padding-bottom: 0px;
+
+    .panel-title {
+      font-size: @font-size-h3;
+      font-weight: normal;
+
+      a {
+        float: right;
+        font-size: 0.9em;
+        color: @link-color;
+      }
+    }
+  }
+}
