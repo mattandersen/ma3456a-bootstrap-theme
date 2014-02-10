@@ -1,6 +1,5 @@
 {
   "name": "bootstrap-ma3456a",
-  "version": "1.0",
   "devDependencies": {
     "grunt": "~0.4.2",
     "grunt-contrib-jshint": "~0.7.0",
